@@ -3,7 +3,9 @@
 
 void init();
 
-int main() {
+int
+main()
+{
   init();
 
   nf::Screen screen("wifi-screen", 640, 480);
@@ -19,6 +21,8 @@ int main() {
   }
 }
 
-void init() {
+void
+init()
+{
   SDL_Init(SDL_INIT_VIDEO);
 }
