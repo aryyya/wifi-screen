@@ -1,17 +1,23 @@
-#ifndef SCREEN_H
-#define SCREEN_H
+#pragma once
 
 #include "SDL.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "fatal-error.hpp"
+#include <cstdlib>
+#include <iostream>
+#include <string>
 
-typedef struct Screen {
-  SDL_Window *window;
-  SDL_Renderer *renderer;
-} Screen;
-
-Screen *screen_new(const char *title, const int width, const int height);
-void screen_free(Screen *t);
-
-#endif
-
+namespace nf
+{
+  class Screen
+  {
+  private:
+    std::string title;
+    int width;
+    int height;
+    SDL_Window *window;
+    SDL_Renderer *renderer;
+  public:
+    Screen(const std::string& title, const int width, const int height);
+    ~Screen();
+  };
+}

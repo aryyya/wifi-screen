@@ -1,15 +1,12 @@
 #include "SDL.h"
-#include "screen.h"
-#include <stdbool.h>
-#include <stdio.h>
+#include "screen.hpp"
 
 void init();
-void term();
 
 int main() {
   init();
 
-  Screen *screen = screen_new("wifi-screen", 640, 480);
+  nf::Screen screen("wifi-screen", 640, 480);
 
   bool run = true;
   while (run) {
@@ -20,16 +17,8 @@ int main() {
       }
     }
   }
-
-  screen_free(screen);
-
-  term();
 }
 
 void init() {
   SDL_Init(SDL_INIT_VIDEO);
-}
-
-void term() {
-
 }
