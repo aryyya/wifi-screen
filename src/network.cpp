@@ -1,5 +1,12 @@
 #include "network.hpp"
 
+namespace
+{
+  const int UDP_RECV_NONE = 0;
+  const int UDP_RECV_RECEIVED = 1;
+  const int UDP_RECV_ERROR = -1;
+}
+
 nf::Network::Network(const Uint16 port)
 {
   socket = SDLNet_UDP_Open(port);
@@ -15,15 +22,18 @@ nf::Network::~Network()
 void
 nf::Network::receive_data() const
 {
-  UDPpacket *packet = SDLNet_AllocPacket(1024);
-  char buffer[1024];
+  UDPpacket *packet = SDLNet_AllocPacket(64);
+  const int status = SDLNet_UDP_Recv(socket, packet);
 
-  switch (SDLNet_UDP_Recv(socket, packet)) {
-    case 1:
-      memcpy(buffer, packet->data, packet->len);
-      buffer[packet->len] = '\0';
-      std::cout << buffer << "\n";
-      std::cout << packet->len << " bytes received\n";
-      break;
+  if (status == UDP_RECV_RECEIVED) {
+#ifdef DEV_MODE
+    std::cout << "packet received\n";
+#endif
   }
+  
+#ifdef DEV_MODE
+  else if (status == UDP_RECV_ERROR) {
+    std::cerr << "sdl net udp recv error\n";
+  }
+#endif
 }

@@ -5,7 +5,7 @@ namespace
   void
   _log_error(const std::string &error_message)
   {
-    std::cout << __FILE__ << ": " << error_message << "\n";
+    std::cerr << __FILE__ << ": " << error_message << "\n";
   }
 }
 

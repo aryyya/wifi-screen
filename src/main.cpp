@@ -24,6 +24,10 @@ namespace
 int
 main()
 {
+#ifdef DEV_MODE
+  std::cout << "development mode enabled\n";
+#endif
+
   _initialize();
 
   nf::Screen screen("wifi-screen", 640, 480);
