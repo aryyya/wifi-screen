@@ -9,8 +9,8 @@ nf::Screen::Screen(const std::string& title, const int width, const int height)
     title.c_str(),
     SDL_WINDOWPOS_UNDEFINED,
     SDL_WINDOWPOS_UNDEFINED,
-    width,
-    height,
+    this->width,
+    this->height,
     SDL_WINDOW_SHOWN
   );
   if (window == nullptr) nf::fatal_error_sdl("sdl window creation error", nf::ErrorType::SDL);

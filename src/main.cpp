@@ -1,6 +1,7 @@
 #include "SDL.h"
 #include "SDL_net.h"
 #include "fatal-error.hpp"
+#include "network.hpp"
 #include "screen.hpp"
 
 namespace
@@ -24,7 +25,9 @@ int
 main()
 {
   _initialize();
+
   nf::Screen screen("wifi-screen", 640, 480);
+  nf::Network network(54321);
 
   bool run = true;
   while (run) {
@@ -34,6 +37,8 @@ main()
         case SDL_QUIT: run = false; break;
       }
     }
+
+    network.receive_data();
   }
 
   _terminate();
