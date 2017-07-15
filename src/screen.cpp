@@ -13,14 +13,14 @@ nf::Screen::Screen(const std::string& title, const int width, const int height)
     height,
     SDL_WINDOW_SHOWN
   );
-  if (window == nullptr) nf::fatal_error_sdl("sdl window creation error");
+  if (window == nullptr) nf::fatal_error_sdl("sdl window creation error", nf::ErrorType::SDL);
 
   renderer = SDL_CreateRenderer(
     window,
     -1,
     0
   );
-  if (renderer == nullptr) nf::fatal_error_sdl("sdl renderer creation error");
+  if (renderer == nullptr) nf::fatal_error_sdl("sdl renderer creation error", nf::ErrorType::SDL);
 }
 
 nf::Screen::~Screen()
